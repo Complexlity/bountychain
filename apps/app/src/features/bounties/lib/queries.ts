@@ -1,13 +1,13 @@
 "server-only";
 
 /* eslint-disable import/no-unresolved */
-import db from "@/db";
+import db from "@/db2";
 import {
   bounties,
   insertBountiesSchema,
   insertSubmissionsSchema,
   submissions,
-} from "@/db/schema";
+} from "@/db2/schema";
 import * as z from "zod";
 import { eq, and } from "drizzle-orm";
 

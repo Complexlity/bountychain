@@ -25,7 +25,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { insertBountiesSchema } from "@/db/schema";
+import { insertBountiesSchema } from "@/db2/schema";
 import { useCreateBountyNative } from "@/features/bounties/hooks/use-create-bounty-native";
 import { toast } from "@/hooks/use-toast";
 import { useTokenPrice } from "@/hooks/use-token-price";

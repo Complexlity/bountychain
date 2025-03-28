@@ -1,4 +1,4 @@
-import { insertBountiesSchema } from "@/db/schema";
+import { insertBountiesSchema } from "@/db2/schema";
 import serverEnv from "@/lib/server-env";
 import { getPublicClient, supportedChains } from "@/lib/viem";
 import { NextRequest } from "next/server";
