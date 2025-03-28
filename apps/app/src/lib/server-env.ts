@@ -40,6 +40,7 @@ const serverEnvSchema = z
 export type serverEnv = z.infer<typeof serverEnvSchema>;
 
 const { data: serverEnv, error } = serverEnvSchema.safeParse(process.env);
+console.log(process.env)
 
 if (error) {
   console.error("❌ Invalid env:");
