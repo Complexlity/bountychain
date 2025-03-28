@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
   insertBountiesSchema,
   insertSubmissionsSchema,
-} from "../../../db/schema";
+} from "@/db2/schema";
 import { Address } from "viem";
 import { getBounty } from "@/features/bounties/lib/queries";
 
