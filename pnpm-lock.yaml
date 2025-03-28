@@ -176,10 +176,10 @@ importers:
         version: 3.5.0
       drizzle-orm:
         specifier: ^0.35.3
-        version: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0)
+        version: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0)
       drizzle-zod:
         specifier: ^0.5.1
-        version: 0.5.1(drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0))(zod@3.24.2)
+        version: 0.5.1(drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0))(zod@3.24.2)
       hono:
         specifier: ^4.6.8
         version: 4.7.5
@@ -205,6 +205,9 @@ importers:
       '@types/bun':
         specifier: latest
         version: 1.2.8
+      '@types/node':
+        specifier: ^22.13.14
+        version: 22.13.14
 
   apps/docs:
     dependencies:
@@ -7106,7 +7109,7 @@ snapshots:
 
   '@types/bn.js@5.1.6':
     dependencies:
-      '@types/node': 20.17.28
+      '@types/node': 22.13.14
 
   '@types/bun@1.2.8':
     dependencies:
@@ -7148,7 +7151,7 @@ snapshots:
 
   '@types/pbkdf2@3.1.2':
     dependencies:
-      '@types/node': 20.17.28
+      '@types/node': 22.13.14
 
   '@types/prop-types@15.7.14': {}
 
@@ -7171,7 +7174,7 @@ snapshots:
 
   '@types/secp256k1@4.0.6':
     dependencies:
-      '@types/node': 20.17.28
+      '@types/node': 22.13.14
 
   '@types/through@0.0.33':
     dependencies:
@@ -7183,7 +7186,7 @@ snapshots:
 
   '@types/ws@8.18.0':
     dependencies:
-      '@types/node': 20.17.28
+      '@types/node': 22.13.14
 
   '@typescript-eslint/eslint-plugin@8.28.0(@typescript-eslint/parser@8.28.0(eslint@8.57.1)(typescript@5.8.2))(eslint@8.57.1)(typescript@5.8.2)':
     dependencies:
@@ -8451,12 +8454,12 @@ snapshots:
       bun-types: 1.2.7
       react: 18.3.1
 
-  drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0):
+  drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0):
     dependencies:
       '@libsql/client-wasm': 0.15.1
     optionalDependencies:
       '@libsql/client': 0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      '@types/react': 19.0.10
+      '@types/react': 18.3.20
       bun-types: 1.2.7
       react: 19.0.0
 
@@ -8465,9 +8468,9 @@ snapshots:
       drizzle-orm: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@18.3.1)
       zod: 3.24.2
 
-  drizzle-zod@0.5.1(drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0))(zod@3.24.2):
+  drizzle-zod@0.5.1(drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0))(zod@3.24.2):
     dependencies:
-      drizzle-orm: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0)
+      drizzle-orm: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0)
       zod: 3.24.2
 
   dunder-proto@1.0.1:
