@@ -1,11 +1,8 @@
+import { config } from "dotenv";
 import { z } from "zod";
 import { SupportedChainKey, supportedChains } from "./viem";
-import { config } from "dotenv";
-import fs from 'fs'
 
 config();
-
-
 const Dialect = z.enum(["sqlite", "turso"]);
 type Dialect = Prettify<z.infer<typeof Dialect>>;
 
