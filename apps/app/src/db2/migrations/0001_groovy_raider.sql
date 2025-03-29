@@ -1,1 +1,0 @@
-CREATE UNIQUE INDEX `submissions_bountyId_creator_unique` ON `submissions` (`bountyId`,`creator`);

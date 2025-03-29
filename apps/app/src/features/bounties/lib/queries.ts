@@ -7,7 +7,7 @@ import {
   insertBountiesSchema,
   insertSubmissionsSchema,
   submissions,
-} from "@/db2/schema";
+} from "@repo/db/schema";
 import * as z from "zod";
 import { eq, and } from "drizzle-orm";
 

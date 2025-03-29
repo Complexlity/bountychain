@@ -1,1 +1,0 @@
-ALTER TABLE `bounty` ADD `token` text DEFAULT 'eth' NOT NULL;

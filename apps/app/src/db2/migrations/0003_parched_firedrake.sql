@@ -1,1 +1,0 @@
-ALTER TABLE `bounty` ADD `chainId` integer DEFAULT 42161 NOT NULL;

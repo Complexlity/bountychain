@@ -2,8 +2,8 @@ import { z } from "zod";
 import {
   insertBountiesSchema,
   insertSubmissionsSchema,
-} from "@/db2/schema";
-import { Address } from "viem";
+} from "@repo/db/schema";
+import { type Address } from "viem";
 import { getBounty } from "@/features/bounties/lib/queries";
 
 export type CreateBountySchema = z.infer<typeof insertBountiesSchema>;
