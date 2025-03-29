@@ -1,4 +1,5 @@
 import { config } from "dotenv";
+import Bun from 'bun'
 import { z } from "zod";
 import { SupportedChainKey, supportedChains } from "./viem";
 
@@ -49,6 +50,10 @@ type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
 
+console.log({
+  mainenv: process.env,
+  bunenv: Bun.env,
+})
 const { data: env, error } = EnvSchema.safeParse(process.env);
 
 if (error) {
