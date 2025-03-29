@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "build:backup": "turbo run build --filter=backup-server",
+    "build:backup": "turbo run lint",
     "dev": "turbo watch dev",
     "start:backup": "turbo run backup",
     "lint": "turbo run lint",
