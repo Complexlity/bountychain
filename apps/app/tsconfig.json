@@ -33,13 +33,14 @@
       ],
       "@shared/types": [
         "../../shared/types"
-      ],
-    }
+      ]
+    },
+    "noEmit": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+  ]
 }

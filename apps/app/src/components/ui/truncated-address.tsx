@@ -1,6 +1,6 @@
 
 import { ensNameConfig } from "@/lib/wagmi-config";
-import { Hex } from "viem";
+import {type  Hex } from "viem";
 import { useEnsName } from "wagmi";
 import { AddressCopyButton } from "./address-copy-button";
 

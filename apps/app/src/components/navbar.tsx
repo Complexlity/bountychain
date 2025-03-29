@@ -7,7 +7,7 @@ import { Coins } from "lucide-react";
 import { Button } from "./ui/button";
 import { CreateBountyDialog } from "@/features/bounties/components/create-bounty-dialog";
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import {type  ReactNode } from "react";
 
 interface NavbarLink {
   href: string;
