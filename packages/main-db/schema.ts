@@ -1,4 +1,4 @@
-import { supportedChains } from "@shared/viem";
+import { supportedChains } from "../../shared/utilities/viem";
 import { relations } from "drizzle-orm";
 import {
   integer,

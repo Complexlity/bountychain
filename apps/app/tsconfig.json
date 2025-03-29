@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../shared/config/base.tsconfig.json",
   "compilerOptions": {
     "target": "es2022",
     "lib": [
@@ -7,15 +7,9 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
@@ -28,12 +22,18 @@
       "@/*": [
         "./src/*"
       ],
-      "@shared/constants": [
-        "../../shared/constants"
+      "@shared/utilities": [
+        "../../shared/utilities"
       ],
       "@shared/viem": [
         "../../shared/utilities/viem"
-      ]
+      ],
+      "@shared/constants": [
+        "../../shared/constants"
+      ],
+      "@shared/types": [
+        "../../shared/types"
+      ],
     }
   },
   "include": [
@@ -42,7 +42,4 @@
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
 }

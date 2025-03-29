@@ -1,6 +1,6 @@
-import { type Prettify } from "./types";
+import { type Prettify } from "../../shared/types";
 import { z } from "zod";
-import { type SupportedChainKey, supportedChains } from "@shared/viem";
+import { type SupportedChainKey, supportedChains } from "../../shared/utilities/viem";
 
 const Dialect = z.enum(["sqlite", "turso"]);
 type Dialect = Prettify<z.infer<typeof Dialect>>;

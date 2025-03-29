@@ -1,10 +1,10 @@
-import { insertBountiesSchema } from "@/db2/schema";
+import { insertBountiesSchema } from "@repo/db";
 import serverEnv from "@/lib/server-env";
 import { getPublicClient, supportedChains } from "@shared/viem";
 import { NextRequest } from "next/server";
-import { Address, formatUnits } from "viem";
+import { type Address, formatUnits } from "viem";
 import { createBounty, getBounties } from "../lib/queries";
-import { CreateBountySchema } from "../lib/types";
+import { type CreateBountySchema } from "../lib/types";
 import { isZeroAddress } from "../lib/utils";
 
 export async function get() {
