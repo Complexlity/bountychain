@@ -1,7 +1,6 @@
 import { createPublicClient, http } from "viem";
 import { arbitrum, arbitrumSepolia } from "viem/chains";
-import env from "./env";
-import { bountyAbiNative, bountyErc20Abi } from "./constants";
+import { bountyNativeAbi, bountyErc20Abi } from "./constants";
 
 export const supportedChains = {
   arbitrum: {
@@ -12,7 +11,7 @@ export const supportedChains = {
         decimals: 18,
         token: undefined,
         address: "0xEda8B0898DAc56ead2bC4f573C5252D3ef3d0b3c",
-        abi: bountyAbiNative,
+        abi: bountyNativeAbi,
       },
       usdc: {
         decimals: 6,
@@ -30,7 +29,7 @@ export const supportedChains = {
         decimals: 18,
         token: undefined,
         address: "0x6E46796857a0E061374a0Bcb4Ce01af851773d2A",
-        abi: bountyAbiNative,
+        abi: bountyNativeAbi,
       },
       usdc: {
         decimals: 6,

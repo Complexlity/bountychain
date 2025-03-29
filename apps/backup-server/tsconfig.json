@@ -13,7 +13,24 @@
     ],
     "strict": true,
     "outDir": "./dist",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@shared/utilities": [
+        "../../shared/utilities"
+      ],
+      "@shared/viem": [
+        "../../shared/utilities/viem"
+      ],
+      "@shared/constants": [
+        "../../shared/constants"
+      ],
+      "@shared/types": [
+        "../../shared/types"
+      ]
+    }
   },
   "tsc-alias": {
     "resolveFullPaths": true

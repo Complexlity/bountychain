@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { notFound, onError } from "stoker/middlewares";
 import { Address, decodeEventLog } from "viem";
-import { bountyAbiNative } from "./constants";
+import { bountyNativeAbi } from "./constants";
 import db from "./db";
 import { pinoLogger } from "./pino-logger";
 import {

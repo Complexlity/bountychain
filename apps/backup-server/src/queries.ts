@@ -19,11 +19,13 @@ export async function completeBounty(bountyId: string, submissionId: number) {
   await db
     .update(bounties)
     .set({ status: "complete" })
+    //@ts-expect-error: works in app/features/lib/queries but for some reason types error here
     .where(eq(bounties.id, bountyId));
   await db
     .update(submissions)
     .set({ isComplete: true })
     .where(
+      //@ts-expect-error: same as above
       and(eq(submissions.bountyId, bountyId), eq(submissions.id, submissionId))
     );
   return true;
@@ -101,7 +103,6 @@ async function processCreateBounties() {
   // Get all bounty IDs from the set
   const bountyIds = await kvStore.smembers(BOUNTY_SET_KEY);
   console.log("Found length", bountyIds.length);
-  return;
 
   // Process each bounty for creation
   for (const bountyId of bountyIds) {
@@ -135,7 +136,6 @@ async function processCompleteBounties() {
   // Get completed bounty IDs from the set
   const completedBountyIds = await kvStore.smembers(BOUNTY_COMPLETE_SET_KEY);
   console.log("Found length", completedBountyIds.length);
-  return;
   // Process each completed bounty
   for (const bountyId of completedBountyIds) {
     const bountyKey = `${BOUNTY_KEY_PREFIX}${bountyId}`;
