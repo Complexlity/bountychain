@@ -25,11 +25,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { insertBountiesSchema } from "@/db2/schema";
+import { insertBountiesSchema } from "@repo/db/schema";
 import { useCreateBountyNative } from "@/features/bounties/hooks/use-create-bounty-native";
 import { toast } from "@/hooks/use-toast";
 import { useTokenPrice } from "@/hooks/use-token-price";
-import { SupportedChainKey, supportedChains } from "@shared/viem";
+import { type SupportedChainKey, supportedChains } from "@shared/viem";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -37,7 +37,7 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Address, erc20Abi, formatEther, parseUnits } from "viem";
+import { type Address, erc20Abi, formatEther, parseUnits } from "viem";
 import {
   useAccount,
   useBalance,

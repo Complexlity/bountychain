@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/tooltip";
 import { TruncatedAddress } from "@/components/ui/truncated-address";
 import { toast } from "@/hooks/use-toast";
-import { SupportedChainKey, supportedChains } from "@shared/viem";
+import { type SupportedChainKey, supportedChains } from "@shared/viem";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CheckCircle2, Clock, Loader2, Trophy, User } from "lucide-react";
 import type { Address } from "viem";

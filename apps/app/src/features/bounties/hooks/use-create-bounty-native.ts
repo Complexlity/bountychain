@@ -4,11 +4,11 @@ import {
 } from "@/features/bounties/contract/bountyAbi.json";
 import {
   getPublicClient,
-  SupportedChainKey,
+ type  SupportedChainKey,
   supportedChains,
 } from "@shared/viem";
 import { useMutation } from "@tanstack/react-query";
-import { Address, decodeEventLog, parseEther } from "viem";
+import { type Address, decodeEventLog, parseEther } from "viem";
 import { useWriteContract } from "wagmi";
 
 export const useCreateBountyNative = ({

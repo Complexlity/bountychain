@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Address, isAddress } from "viem";
+import {type Address, isAddress } from "viem";
 import {
   useAccount,
   useSimulateContract,
@@ -7,7 +7,7 @@ import {
   useWriteContract,
 } from "wagmi";
 
-import { SupportedChainKey, supportedChains } from "@shared/viem";
+import {  type SupportedChainKey, supportedChains } from "@shared/viem";
 // import { useGasAmountEstimate } from '..';
 
 type PayBountyArgs = {

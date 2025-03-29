@@ -1,6 +1,6 @@
 import { getBounty } from "@/features/bounties/lib/queries";
 import SingleBounty from "./single-bounty";
-import { Metadata } from "next";
+import { type Metadata } from "next";
 
 type Props = {
   params: { bountyId: string };

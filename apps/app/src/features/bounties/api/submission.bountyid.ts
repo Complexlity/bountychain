@@ -8,7 +8,7 @@ import type {
   WithSignature,
 } from "@/features/bounties/lib/types";
 import { NextRequest } from "next/server";
-import { insertSubmissionsSchema } from "@/db2/schema";
+import { insertSubmissionsSchema } from "@repo/db/schema";
 import { getPublicClient } from "@shared/viem";
 import serverEnv from "@/lib/server-env";
 

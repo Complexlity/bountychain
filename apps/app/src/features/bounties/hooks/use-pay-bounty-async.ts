@@ -1,10 +1,10 @@
 import {
   getPublicClient,
-  SupportedChainKey,
+  type SupportedChainKey,
   supportedChains,
 } from "@shared/viem";
 import { useMutation } from "@tanstack/react-query";
-import { Address } from "viem";
+import { type Address } from "viem";
 import { useWriteContract } from "wagmi";
 
 export const usePayBountyAsync = ({

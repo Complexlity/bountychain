@@ -1,10 +1,10 @@
 import {
   getPublicClient,
-  SupportedChainKey,
+  type SupportedChainKey,
   supportedChains,
 } from "@shared/viem";
 import { NextRequest } from "next/server";
-import { Address, decodeEventLog } from "viem";
+import { type Address, decodeEventLog } from "viem";
 import { z } from "zod";
 import { completeBounty } from "../lib/queries";
 import { isZeroAddress } from "../lib/utils";

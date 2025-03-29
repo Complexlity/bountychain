@@ -1,6 +1,6 @@
 import { supportedChains } from "@shared/viem";
 import { useEffect } from "react";
-import { Address, erc20Abi, TransactionReceipt } from "viem";
+import { type Address, erc20Abi, type TransactionReceipt } from "viem";
 import {
   useSimulateContract,
   useWaitForTransactionReceipt,

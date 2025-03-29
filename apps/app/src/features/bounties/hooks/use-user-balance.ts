@@ -1,6 +1,6 @@
-import { SupportedChainKey, supportedChains } from "@shared/viem";
+import { type SupportedChainKey, supportedChains } from "@shared/viem";
 import { useReadContract } from "wagmi";
-import { Address, erc20Abi, formatUnits } from "viem";
+import { type Address, erc20Abi, formatUnits } from "viem";
 import { formatBalance } from "@/lib/utils";
 
 type UseUserBalanceProps = {

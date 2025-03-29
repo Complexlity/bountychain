@@ -12,7 +12,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useBounty } from "@/features/bounties/hooks/bounties";
 import { usePayBounty } from "@/features/bounties/hooks/use-pay-bounty";
-import {
+import type {
   CreateBountySubmissionSchema,
   WithSignature,
 } from "@/features/bounties/lib/types";
@@ -23,7 +23,7 @@ import { HandCoins, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import invariant from "tiny-invariant";
-import { Address, isAddress } from "viem";
+import { type Address, isAddress } from "viem";
 import { useAccount, useSignMessage } from "wagmi";
 
 type Props = {

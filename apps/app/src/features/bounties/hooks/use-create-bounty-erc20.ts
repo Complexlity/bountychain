@@ -1,10 +1,10 @@
 import {
   getPublicClient,
-  SupportedChainKey,
+  type SupportedChainKey,
   supportedChains,
 } from "@shared/viem";
 import { useMutation } from "@tanstack/react-query";
-import { Address, decodeEventLog, parseUnits } from "viem";
+import { type Address, decodeEventLog, parseUnits } from "viem";
 import { useAccount, useWriteContract } from "wagmi";
 
 export const useCreateBountyErc20 = ({
