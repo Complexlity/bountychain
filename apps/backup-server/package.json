@@ -5,7 +5,8 @@
     "dev": "bun run --hot src/index.ts",
     "start": "bun run src/index.ts",
     "test": "vitest",
-    "build": "bun build src/index.ts --target=node --outdir=dist --sourcemap=linked"
+    "build": "bun build src/index.ts --target=node --outdir=dist --sourcemap=linked",
+    "backup": "bun run src/backup.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.14.0",
