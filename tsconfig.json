@@ -1,9 +1,3 @@
 {
-    "compilerOptions": {
-        "paths": {
-            "@/*": [
-                "./apps/app/src/*"
-            ]
-        }
-    },
+    "extends": "./tsconfig.base.json",
 }
