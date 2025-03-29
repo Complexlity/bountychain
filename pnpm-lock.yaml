@@ -175,6 +175,9 @@ importers:
       '@libsql/client':
         specifier: ^0.14.0
         version: 0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      '@libsql/darwin-arm64':
+        specifier: ^0.5.3
+        version: 0.5.3
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/main-db
@@ -186,10 +189,10 @@ importers:
         version: 3.5.0
       drizzle-orm:
         specifier: ^0.35.3
-        version: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0)
+        version: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0)
       drizzle-zod:
         specifier: ^0.5.1
-        version: 0.5.1(drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0))(zod@3.24.2)
+        version: 0.5.1(drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0))(zod@3.24.2)
       hono:
         specifier: ^4.6.8
         version: 4.7.5
@@ -205,6 +208,9 @@ importers:
       stoker:
         specifier: ^1.2.7
         version: 1.4.2(@asteasolutions/zod-to-openapi@7.3.0(zod@3.24.2))(hono@4.7.5)(openapi3-ts@4.4.0)
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@types/node@22.13.14)(typescript@5.8.2)
       viem:
         specifier: ^2.21.36
         version: 2.24.1(bufferutil@4.0.9)(typescript@5.8.2)(utf-8-validate@5.0.10)(zod@3.24.2)
@@ -1025,6 +1031,11 @@ packages:
 
   '@libsql/darwin-arm64@0.4.7':
     resolution: {integrity: sha512-yOL742IfWUlUevnI5PdnIT4fryY3LYTdLm56bnY0wXBw7dhFcnjuA7jrH3oSVz2mjZTHujxoITgAE7V6Z+eAbg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@libsql/darwin-arm64@0.5.3':
+    resolution: {integrity: sha512-yAitxSuiaLT465uAvqXi1TzirXb+IOxa6sfC+uIuyCzAusLEhOFlEhutqenVx93lhPkJZJIiZkK1pIETIatnfg==}
     cpu: [arm64]
     os: [darwin]
 
@@ -6958,6 +6969,8 @@ snapshots:
   '@libsql/darwin-arm64@0.4.7':
     optional: true
 
+  '@libsql/darwin-arm64@0.5.3': {}
+
   '@libsql/darwin-x64@0.4.7':
     optional: true
 
@@ -9723,12 +9736,12 @@ snapshots:
       bun-types: 1.2.7
       react: 18.3.1
 
-  drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0):
+  drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0):
     dependencies:
       '@libsql/client-wasm': 0.15.1
     optionalDependencies:
       '@libsql/client': 0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      '@types/react': 18.3.20
+      '@types/react': 19.0.10
       bun-types: 1.2.7
       react: 19.0.0
 
@@ -9737,9 +9750,9 @@ snapshots:
       drizzle-orm: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@18.3.1)
       zod: 3.24.2
 
-  drizzle-zod@0.5.1(drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0))(zod@3.24.2):
+  drizzle-zod@0.5.1(drizzle-orm@0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0))(zod@3.24.2):
     dependencies:
-      drizzle-orm: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@18.3.20)(bun-types@1.2.7)(react@19.0.0)
+      drizzle-orm: 0.35.3(@libsql/client-wasm@0.15.1)(@libsql/client@0.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10))(@types/react@19.0.10)(bun-types@1.2.7)(react@19.0.0)
       zod: 3.24.2
 
   dunder-proto@1.0.1:

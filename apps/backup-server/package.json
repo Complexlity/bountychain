@@ -6,10 +6,9 @@
     "start": "bun run src/index.ts",
     "test": "vitest",
     "build": "bun build src/index.ts --target=node --outdir=dist --sourcemap=linked",
-    "backup": "bun run src/backup.ts"
+    "backup": "bun run start"
   },
   "dependencies": {
-    "@hono/node-server": "^1.14.0",
     "@libsql/client": "^0.14.0",
     "@libsql/darwin-arm64": "^0.5.3",
     "@repo/db": "workspace:*",

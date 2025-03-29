@@ -3,8 +3,9 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:backup": "turbo run build --filter=backup-server",
     "dev": "turbo watch dev",
-    "backup": "turbo run backup",
+    "start:backup": "turbo run backup",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
