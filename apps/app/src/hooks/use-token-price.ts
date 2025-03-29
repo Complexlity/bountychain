@@ -1,4 +1,4 @@
-import { supportedChains, SupportedChainKey } from "@/lib/viem";
+import { supportedChains, SupportedChainKey } from "@shared/viem";
 import { GetTokenPriceResponseAdapter } from "@moralisweb3/common-evm-utils";
 import { useQuery } from "@tanstack/react-query";
 

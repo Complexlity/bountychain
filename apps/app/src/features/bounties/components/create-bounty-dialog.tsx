@@ -29,7 +29,7 @@ import { insertBountiesSchema } from "@/db2/schema";
 import { useCreateBountyNative } from "@/features/bounties/hooks/use-create-bounty-native";
 import { toast } from "@/hooks/use-toast";
 import { useTokenPrice } from "@/hooks/use-token-price";
-import { SupportedChainKey, supportedChains } from "@/lib/viem";
+import { SupportedChainKey, supportedChains } from "@shared/viem";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/accordion";
 import { GradientSpinner } from "@/components/ui/gradient-spinner";
 import { BountyCard } from "@/features/bounties/components/bounty-card";
-import { SupportedChainKey, supportedChains } from "@/lib/viem";
+import { SupportedChainKey, supportedChains } from "@shared/viem";
 import Link from "next/link";
 
 export default function Page() {

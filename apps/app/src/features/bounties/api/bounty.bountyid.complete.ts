@@ -2,7 +2,7 @@ import {
   getPublicClient,
   SupportedChainKey,
   supportedChains,
-} from "@/lib/viem";
+} from "@shared/viem";
 import { NextRequest } from "next/server";
 import { Address, decodeEventLog } from "viem";
 import { z } from "zod";

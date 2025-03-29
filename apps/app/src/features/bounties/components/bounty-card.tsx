@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useTokenPrice } from "@/hooks/use-token-price";
-import { supportedChains, SupportedChainKey } from "@/lib/viem";
+import { supportedChains, SupportedChainKey } from "@shared/viem";
 
 type bounty = {
   id: string;

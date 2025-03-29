@@ -1,4 +1,4 @@
-import { bountyAbi, bountyErc20Abi } from "@/features/bounties/lib/constants";
+import { bountyAbi, bountyErc20Abi } from "../constants";
 import { createPublicClient, http } from "viem";
 import { arbitrum, arbitrumSepolia } from "viem/chains";
 

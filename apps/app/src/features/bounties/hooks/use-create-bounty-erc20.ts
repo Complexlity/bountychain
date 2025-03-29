@@ -2,7 +2,7 @@ import {
   getPublicClient,
   SupportedChainKey,
   supportedChains,
-} from "@/lib/viem";
+} from "@shared/viem";
 import { useMutation } from "@tanstack/react-query";
 import { Address, decodeEventLog, parseUnits } from "viem";
 import { useAccount, useWriteContract } from "wagmi";

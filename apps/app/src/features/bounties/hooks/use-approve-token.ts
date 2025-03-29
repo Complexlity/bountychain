@@ -1,4 +1,4 @@
-import { supportedChains } from "@/lib/viem";
+import { supportedChains } from "@shared/viem";
 import { useEffect } from "react";
 import { Address, erc20Abi, TransactionReceipt } from "viem";
 import {

@@ -1,4 +1,4 @@
-import { SupportedChainKey, supportedChains } from "@/lib/viem";
+import { SupportedChainKey, supportedChains } from "@shared/viem";
 import { useReadContract } from "wagmi";
 import { Address, erc20Abi, formatUnits } from "viem";
 import { formatBalance } from "@/lib/utils";

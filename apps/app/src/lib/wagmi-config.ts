@@ -1,5 +1,5 @@
 import { createConfig, http } from "wagmi";
-import { SupportedChainKey, supportedChains } from "./viem";
+import { SupportedChainKey, supportedChains } from "@shared/viem";
 import { mainnet } from "viem/chains";
 
 const activeChain =

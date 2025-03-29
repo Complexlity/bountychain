@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { TruncatedAddress } from "@/components/ui/truncated-address";
 import { useTokenPrice } from "@/hooks/use-token-price";
-import { SupportedChainKey, supportedChains } from "@/lib/viem";
+import { SupportedChainKey, supportedChains } from "@shared/viem";
 import { ArrowLeft, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";

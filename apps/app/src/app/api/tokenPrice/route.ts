@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Moralis from "moralis";
 import serverEnv from "@/lib/server-env";
-import { SupportedChainKey, supportedChains } from "@/lib/viem";
+import { SupportedChainKey, supportedChains } from "@shared/viem";
 import * as z from "zod";
 
 let moralisInitialized = false;

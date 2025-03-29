@@ -27,6 +27,12 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@shared/constants": [
+        "../../shared/constants"
+      ],
+      "@shared/viem": [
+        "../../shared/utilities/viem"
       ]
     }
   },

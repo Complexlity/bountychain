@@ -7,7 +7,7 @@ import {
   useWriteContract,
 } from "wagmi";
 
-import { SupportedChainKey, supportedChains } from "@/lib/viem";
+import { SupportedChainKey, supportedChains } from "@shared/viem";
 // import { useGasAmountEstimate } from '..';
 
 type PayBountyArgs = {

@@ -16,7 +16,7 @@ import { BountyCard } from "@/features/bounties/components/bounty-card";
 import { CreateBountyDialog } from "@/features/bounties/components/create-bounty-dialog";
 import FloatingButton from "@/features/bounties/components/floating-button";
 import { useBounties } from "@/features/bounties/hooks/bounties";
-import { SupportedChainKey, supportedChains } from "@/lib/viem";
+import { SupportedChainKey, supportedChains } from "@shared/viem";
 import { useMemo, useState } from "react";
 
 export default function BountiesPage() {
