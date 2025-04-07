@@ -7,7 +7,6 @@ node_modules
 
 # Local env files
 .env
-.env.production
 .env.local
 .env.development.local
 .env.test.local
@@ -38,6 +37,5 @@ yarn-error.log*
 .DS_Store
 *.pem
 
-
-DB
-*.sqlite
+# Sqlite
+*/*.sqlite

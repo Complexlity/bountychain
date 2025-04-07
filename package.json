@@ -1,26 +1,25 @@
 {
-  "name": "bountychain-monorepo",
+  "name": "bm-bun",
   "private": true,
   "scripts": {
+    "start": "turbo run start",
     "build": "turbo run build",
-    "build:backup": "turbo run lint",
-    "dev": "turbo watch dev",
-    "start:backup": "turbo run backup",
+    "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
   },
-  "dependencies": {
-    "viem": "^2.23.6"
-
-  },
   "devDependencies": {
     "prettier": "^3.5.3",
-    "turbo": "^2.4.4",
+    "turbo": "^2.5.0",
     "typescript": "5.8.2"
   },
-  "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
-  }
+  },
+  "packageManager": "bun@1.2.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
