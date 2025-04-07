@@ -1,0 +1,46 @@
+{
+  "extends": "../../shared/config/base.tsconfig.json",
+  "compilerOptions": {
+    "target": "es2022",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@shared/utilities": [
+        "../../shared/utilities"
+      ],
+      "@shared/viem": [
+        "../../shared/utilities/viem"
+      ],
+      "@shared/constants": [
+        "../../shared/constants"
+      ],
+      "@shared/types": [
+        "../../shared/types"
+      ]
+    },
+    "noEmit": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ]
+}

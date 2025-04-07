@@ -1,0 +1,14 @@
+{
+    "extends": ["//"],
+    "tasks": {
+      "build": {
+        "passThroughEnv": [
+            "DIALECT",
+               "DATABASE_URL",
+               "MORALIS_API_KEY",
+               "NEXT_PUBLIC_ACTIVE_CHAIN", 
+               "DATABASE_AUTH_TOKEN",
+               "NEXT_PUBLIC_BACKUP_SERVER"]
+      }
+    }
+  }
