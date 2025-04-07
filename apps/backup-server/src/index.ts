@@ -35,7 +35,7 @@ app.notFound(notFound);
 app.onError(onError);
 
 app.get("/", async (c) => {
-  return c.json({ message: "I am Active and Strong" });
+  return c.json({ message: "I am working Active and Strong" });
 });
 
 app.get("/bounties", async (c) => {

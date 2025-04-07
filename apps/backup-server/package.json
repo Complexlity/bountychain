@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "start": "bun run dist/index.js",
-    "start:ts": "bun run dist/index.js --env-file=.env",
+    "start:ts": "bun run src/index.ts",
     "test": "vitest",
     "build": "bun build src/index.ts --target=node --outdir=dist --sourcemap=linked",
     "backup": "bun run start"
