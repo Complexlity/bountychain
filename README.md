@@ -1,3 +1,10 @@
+```markdown
+> **⚠️ Work in Progress:** 
+```
+This is the new version of BountyChain that combiles all tooling and contracts into a single monrepo.
+For the V1, please refer to [github.com/Complexlity/bountychain-v1](https://github.com/Complexlity/bountychain-v1).
+
+
 # BountyChain
 
 BountyChain is a decentralized bounty platform that allows users to create bounties, complete them, and earn rewards in a decentralized way. It is peer-to-peer, and anyone can create a bounty and complete it. The platform is responsible for streamlining the creation and payment process by making it work in just on button click rather than the multi step in traditional processes.
