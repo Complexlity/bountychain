@@ -13,6 +13,7 @@ contract Native_v1 is Ownable {
         USDC
     }
 
+
     struct Bounty {
         uint256 amount;
         TokenType tokenType;
@@ -59,6 +60,8 @@ contract Native_v1 is Ownable {
                 usdcToken.transferFrom(msg.sender, address(this), _amount),
                 "USDC transfer failed"
             );
+        } else {
+            revert("Invalid token type");
         }
 
         _bountyCounter++;
