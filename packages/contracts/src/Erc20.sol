@@ -3,16 +3,14 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract TokenBountyContract is Ownable {
-    using Counters for Counters.Counter;
 
     IERC20 public immutable token;
     uint8 public immutable decimals;
     string public symbol;
-    Counters.Counter private _bountyCounter;
+    uint256 private _bountyCounter;
 
     struct Bounty {
         uint256 amount;
@@ -44,10 +42,10 @@ contract TokenBountyContract is Ownable {
             "Token transfer failed"
         );
 
-        _bountyCounter.increment();
+        _bountyCounter++;
         bytes32 bountyId = keccak256(
             abi.encodePacked(
-                _bountyCounter.current(),
+                _bountyCounter,
                 msg.sender,
                 block.timestamp
             )

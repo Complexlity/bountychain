@@ -2,14 +2,12 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract BountyContract is Ownable {
-    using Counters for Counters.Counter;
 
     IERC20 public usdcToken;
-    Counters.Counter private _bountyCounter;
+    uint256 private _bountyCounter;
 
     enum TokenType {
         ETH,
@@ -64,10 +62,10 @@ contract BountyContract is Ownable {
             );
         }
 
-        _bountyCounter.increment();
+        _bountyCounter++;
         bytes32 bountyId = keccak256(
             abi.encodePacked(
-                _bountyCounter.current(),
+                _bountyCounter,
                 msg.sender,
                 block.timestamp
             )

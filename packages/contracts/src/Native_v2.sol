@@ -1,13 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract BountyContract is Ownable {
-    using Counters for Counters.Counter;
-
-    Counters.Counter private _bountyCounter;
+    uint256 private _bountyCounter;
 
     struct Bounty {
         uint256 amount;
@@ -31,13 +28,9 @@ contract BountyContract is Ownable {
             "Sent ETH must match the specified amount"
         );
 
-        _bountyCounter.increment();
+        _bountyCounter++;
         bytes32 bountyId = keccak256(
-            abi.encodePacked(
-                _bountyCounter.current(),
-                msg.sender,
-                block.timestamp
-            )
+            abi.encodePacked(_bountyCounter, msg.sender, block.timestamp)
         );
 
         bounties[bountyId] = Bounty({
