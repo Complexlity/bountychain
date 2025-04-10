@@ -64,17 +64,17 @@ contract Erc20_v2 is Ownable {
         );
         require(!bounty.isPaid, "Bounty has already been paid");
         require(bounty.amount > 0, "Invalid bounty");
-
         require(
             token.balanceOf(address(this)) >= bounty.amount,
             "Not enough tokens to payout bounty"
         );
+
+        bounty.isPaid = true;
+
         require(
             token.transfer(_winner, bounty.amount),
             "Token transfer failed"
         );
-
-        bounty.isPaid = true;
 
         emit BountyPaid(_bountyId, _winner, bounty.amount);
     }

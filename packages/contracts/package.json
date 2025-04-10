@@ -8,6 +8,7 @@
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
-    "grep": "bun run test --grep"
+    "grep": "bun run test --grep",
+    "hardhat": "hardhat"
   }
 }

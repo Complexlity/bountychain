@@ -13,7 +13,6 @@ contract Native_v1 is Ownable {
         USDC
     }
 
-
     struct Bounty {
         uint256 amount;
         TokenType tokenType;
@@ -80,35 +79,25 @@ contract Native_v1 is Ownable {
         return bountyId;
     }
 
-    function payBounty(bytes32 _bountyId, address payable _winner) external {
+    function payBounty(bytes32 _bountyId, address _winner) external {
+        require(_winner != address(0), "Invalid winner address");
+
         Bounty storage bounty = bounties[_bountyId];
-        require(
-            msg.sender == bounty.creator || msg.sender == owner(),
-            "Only the creator or contract owner can pay the bounty"
-        );
+        require(bounty.creator != address(0), "Bounty does not exist");
+        require(bounty.creator == msg.sender, "Only creator can pay bounty");
         require(!bounty.isPaid, "Bounty has already been paid");
-        require(bounty.amount > 0, "Invalid bounty");
+
+        bounty.isPaid = true;
 
         if (bounty.tokenType == TokenType.ETH) {
-            require(
-                address(this).balance >= bounty.amount,
-                "Not enough ETH to payout bounty"
-            );
-
             (bool sent, ) = _winner.call{value: bounty.amount}("");
-            require(sent, "Failed to send Ether");
+            require(sent, "Failed to send ETH");
         } else if (bounty.tokenType == TokenType.USDC) {
-            require(
-                usdcToken.balanceOf(address(this)) >= bounty.amount,
-                "Not enough USDC to payout bounty"
-            );
             require(
                 usdcToken.transfer(_winner, bounty.amount),
                 "USDC transfer failed"
             );
         }
-
-        bounty.isPaid = true;
 
         emit BountyPaid(_bountyId, _winner, bounty.amount, bounty.tokenType);
     }

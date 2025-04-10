@@ -43,23 +43,18 @@ contract Native_v2 is Ownable {
         return bountyId;
     }
 
-    function payBounty(bytes32 _bountyId, address payable _winner) external {
-        Bounty storage bounty = bounties[_bountyId];
-        require(
-            msg.sender == bounty.creator || msg.sender == owner(),
-            "Only the creator or contract owner can pay the bounty"
-        );
-        require(!bounty.isPaid, "Bounty has already been paid");
-        require(bounty.amount > 0, "Invalid bounty");
-        require(
-            address(this).balance >= bounty.amount,
-            "Not enough ETH to payout bounty"
-        );
+    function payBounty(bytes32 _bountyId, address _winner) external {
+        require(_winner != address(0), "Invalid winner address");
 
-        (bool sent, ) = _winner.call{value: bounty.amount}("");
-        require(sent, "Failed to send Ether");
+        Bounty storage bounty = bounties[_bountyId];
+        require(bounty.creator != address(0), "Bounty does not exist");
+        require(bounty.creator == msg.sender, "Only creator can pay bounty");
+        require(!bounty.isPaid, "Bounty has already been paid");
 
         bounty.isPaid = true;
+
+        (bool sent, ) = _winner.call{value: bounty.amount}("");
+        require(sent, "Failed to send ETH");
 
         emit BountyPaid(_bountyId, _winner, bounty.amount);
     }
