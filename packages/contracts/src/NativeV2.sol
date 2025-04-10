@@ -45,10 +45,8 @@ contract NativeV2Bounty is Ownable {
         require(bounty.creator == msg.sender, "Only creator can pay bounty");
         require(!bounty.isPaid, "Bounty has already been paid");
 
-        // Update state BEFORE external calls (effects)
         bounty.isPaid = true;
 
-        // External calls AFTER state updates (interactions)
         (bool sent, ) = winner.call{value: bounty.amount}("");
         require(sent, "Failed to send ETH");
 

@@ -33,7 +33,6 @@ contract ERC20Bounty is Ownable {
     function createBounty(uint256 amount) external returns (bytes32) {
         require(amount > 0, "Bounty amount must be greater than 0");
 
-        // Effects
         bountyCounter++;
         bytes32 bountyId = keccak256(
             abi.encodePacked(bountyCounter, msg.sender, block.timestamp)
@@ -44,7 +43,6 @@ contract ERC20Bounty is Ownable {
             isPaid: false
         });
 
-        // Interactions
         require(
             token.transferFrom(msg.sender, address(this), amount),
             "Token transfer failed"

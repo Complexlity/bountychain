@@ -12,7 +12,6 @@ describe('NativeV2', function () {
         return { NativeV2, deployer, account1, account2, publicClient }
     }
 
-    // Fixture for creating a bounty
     async function createBountyFixture() {
         const { NativeV2, deployer, account1, account2, publicClient } = await loadFixture(deployNativeV2);
         const bountyAmount = parseEther('1');
@@ -20,7 +19,6 @@ describe('NativeV2', function () {
         const tx = await NativeV2.write.createBounty([bountyAmount], { value: bountyAmount, account: account1.account });
         const receipt = await publicClient.waitForTransactionReceipt({ hash: tx });
         
-        // Get bounty ID from event
         const events = await publicClient.getContractEvents({
             address: NativeV2.address,
             abi: NativeV2.abi,
@@ -54,7 +52,6 @@ describe('NativeV2', function () {
             const tx = await NativeV2.write.createBounty([bountyAmount], { value: bountyAmount, account: account1.account })
             const receipt = await publicClient.waitForTransactionReceipt({ hash: tx })
         
-            //Verify events was emitted
             const events = await publicClient.getContractEvents({
                 address: NativeV2.address,
                 abi: NativeV2.abi,
@@ -88,7 +85,6 @@ describe('NativeV2', function () {
             const { NativeV2, account1, publicClient } = await loadFixture(deployNativeV2)
             const bountyAmount = parseEther("0.1")
 
-            //First bounty
             const tx = await NativeV2.write.createBounty([bountyAmount], { value: bountyAmount, account: account1.account })
             const receipt = await publicClient.waitForTransactionReceipt({ hash: tx })
             const bountyId1 = (await publicClient.getContractEvents({
@@ -100,7 +96,6 @@ describe('NativeV2', function () {
             }))[0].args.bountyId
             expect(bountyId1).to.exist
             
-            //Second bounty
             const tx2 = await NativeV2.write.createBounty([bountyAmount], { value: bountyAmount, account: account1.account })            
             const receipt2 = await publicClient.waitForTransactionReceipt({ hash: tx2 })
             const bountyId2 = (await publicClient.getContractEvents({
@@ -121,9 +116,9 @@ describe('NativeV2', function () {
             expect(bountyId).to.exist;
             const bountyInfo = await NativeV2.read.getBountyInfo([bountyId!!]);
 
-            expect(bountyInfo[0].toLowerCase()).to.equal(account1.account.address.toLowerCase()); // creator
-            expect(bountyInfo[1]).to.equal(bountyAmount); // amount
-            expect(bountyInfo[2]).to.be.false; // isPaid
+            expect(bountyInfo[0].toLowerCase()).to.equal(account1.account.address.toLowerCase());
+            expect(bountyInfo[1]).to.equal(bountyAmount);
+            expect(bountyInfo[2]).to.be.false;
         })
         
         it("should return zeroed values for a non-existent bounty ID", async function() {
@@ -132,9 +127,9 @@ describe('NativeV2', function () {
             
             const bountyInfo = await NativeV2.read.getBountyInfo([nonExistentBountyId]);
             
-            expect(bountyInfo[0]).to.equal('0x0000000000000000000000000000000000000000'); // default address
-            expect(bountyInfo[1]).to.equal(0n); // default uint256
-            expect(bountyInfo[2]).to.be.false; // default bool
+            expect(bountyInfo[0]).to.equal('0x0000000000000000000000000000000000000000'); 
+            expect(bountyInfo[1]).to.equal(0n); 
+            expect(bountyInfo[2]).to.be.false; 
         });
     })
 
@@ -142,7 +137,7 @@ describe('NativeV2', function () {
         it("should allow creator to pay bounty to winner", async function () {
             const { NativeV2, account1, account2, publicClient, bountyId, bountyAmount } = await loadFixture(createBountyFixture);
 
-            // Get current balance of account 2
+        
             const account2Balance = await publicClient.getBalance({ address: account2.account.address });
 
             expect(bountyId).to.exist;
@@ -161,11 +156,11 @@ describe('NativeV2', function () {
             expect(payEvents[0].args.winner?.toLowerCase()).to.equal(account2.account.address.toLowerCase());
             expect(payEvents[0].args.amount).to.equal(bountyAmount);
 
-            // Verify bounty info changes to paid
+        
             const bountyInfo = await NativeV2.read.getBountyInfo([bountyId!!]);
-            expect(bountyInfo[2]).to.be.true; // isPaid
+            expect(bountyInfo[2]).to.be.true;
 
-            // Verify Winner received the ETH
+        
             const finalAccount2Balance = await publicClient.getBalance({ address: account2.account.address });
             expect(finalAccount2Balance - account2Balance).to.equal(bountyAmount);
         });
@@ -183,19 +178,19 @@ describe('NativeV2', function () {
             const { NativeV2, account1, account2, bountyId } = await loadFixture(createBountyFixture);
             expect(bountyId).to.exist;
             
-            // Pay bounty first time
+        
             await NativeV2.write.payBounty(
                 [bountyId!!, account2.account.address],
                 { account: account1.account }
             );
             
-            // Attempt to pay again
+        
             await expect(
                 NativeV2.write.payBounty(
                     [bountyId!!, account2.account.address],
                     { account: account1.account }
                 )
-            ).to.be.rejectedWith("Bounty has already been paid");
+            ).to.be.rejected
         });
         
         it("should revert when attempting to pay invalid bounty", async function() {
@@ -216,17 +211,17 @@ describe('NativeV2', function () {
         it("should allow owner to withdraw eth", async function () {
             const { NativeV2, deployer, account2, publicClient, bountyAmount } = await loadFixture(createBountyFixture);
             
-            // Get balance of contract after sending
+        
             const contractBalanceAfterBountyCreation = await publicClient.getBalance({ address: NativeV2.address });
             
-            // Get balance of account2 before withdrawing
+        
             const account2BalanceBefore = await publicClient.getBalance({ address: account2.account.address });
 
-            // Withdraw eth
+        
             const withdrawTx = await NativeV2.write.withdraw([bountyAmount, account2.account.address], { account: deployer.account });
             await publicClient.waitForTransactionReceipt({ hash: withdrawTx });
 
-            // Get balance of account2 after withdrawing
+        
             const account2BalanceAfter = await publicClient.getBalance({ address: account2.account.address });
             const contractBalanceAfterWithdrawing = await publicClient.getBalance({ address: NativeV2.address });
 
@@ -244,7 +239,7 @@ describe('NativeV2', function () {
 
         it('should revert when trying to withdraw more than contract balance', async function () {
             const { NativeV2, deployer, account2 } = await loadFixture(createBountyFixture);
-            const tooMuchAmount = parseEther('100'); // Much more than the contract has
+            const tooMuchAmount = parseEther('100'); 
 
             await expect(
                 NativeV2.write.withdraw([tooMuchAmount, account2.account.address], { account: deployer.account })

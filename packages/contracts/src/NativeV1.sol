@@ -5,7 +5,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract NativeV1Bounty is Ownable {
-    // Make usdcToken immutable as suggested
     IERC20 public immutable usdcToken;
     
     enum TokenType { ETH, USDC }
@@ -34,7 +33,6 @@ contract NativeV1Bounty is Ownable {
 
         bytes32 bountyId;
         
-        // Check that ETH value is sent when creating ETH bounty
         if (tokenType == TokenType.ETH) {
             require(msg.value == amount, "ETH value must match bounty amount");
         } else {
@@ -50,7 +48,6 @@ contract NativeV1Bounty is Ownable {
                 isPaid: false
             });
             
-            // External call after state change
             require(
                 usdcToken.transferFrom(msg.sender, address(this), amount),
                 "USDC transfer failed"
@@ -60,7 +57,6 @@ contract NativeV1Bounty is Ownable {
             return bountyId;
         }
         
-        // For ETH bounties, we update state after checks
         _bountyCounter++;
         bountyId = keccak256(abi.encodePacked(_bountyCounter, msg.sender, block.timestamp));
         
@@ -83,10 +79,8 @@ contract NativeV1Bounty is Ownable {
         require(bounty.creator == msg.sender, "Only creator can pay bounty");
         require(!bounty.isPaid, "Bounty has already been paid");
         
-        // Update state BEFORE external calls (effects)
         bounty.isPaid = true;
         
-        // External calls AFTER state updates (interactions)
         if (bounty.tokenType == TokenType.ETH) {
             (bool sent,) = winner.call{value: bounty.amount}("");
             require(sent, "Failed to send ETH");

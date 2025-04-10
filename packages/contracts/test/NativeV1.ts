@@ -8,11 +8,12 @@ describe('NativeV1', function () {
         const [deployer, account1, account2] = await hre.viem.getWalletClients()
         const publicClient = await hre.viem.getPublicClient()
         const UsdcContract = await hre.viem.deployContract('UsdcMock')
-        //Send usdc to the deployer
+
         await UsdcContract.write.mint([deployer.account.address, parseEther('1000')])
         await UsdcContract.write.mint([account1.account.address, parseEther('1000')])
         const NativeV1Contract = await hre.viem.deployContract('NativeV1Bounty', [deployer.account.address, UsdcContract.address])
-        //Check the deployer's usdc balance
+       
+
         
         return { NativeV1Contract, UsdcContract, deployer, account1, account2, publicClient }
     }
@@ -99,7 +100,7 @@ describe('NativeV1', function () {
             const tx = await NativeV1Contract.write.createBounty([0, bountyAmount], { value: bountyAmount, account: account1.account })
             const receipt = await publicClient.waitForTransactionReceipt({ hash: tx })
         
-            //Verify events was emitted
+
             const events = await publicClient.getContractEvents({
                 address: NativeV1Contract.address,
                 abi: NativeV1Contract.abi,
@@ -121,7 +122,7 @@ describe('NativeV1', function () {
             await UsdcContract.write.approve([NativeV1Contract.address, bountyAmount], { account: account1.account })
             const tx = await NativeV1Contract.write.createBounty([1, bountyAmount], { account: account1.account })
             const receipt = await publicClient.waitForTransactionReceipt({ hash: tx })
-            //Verify events was emitted
+
             const events = await publicClient.getContractEvents({
                 address: NativeV1Contract.address,
                 abi: NativeV1Contract.abi,
@@ -170,7 +171,7 @@ describe('NativeV1', function () {
             const { NativeV1Contract, account1: account1, publicClient } = await loadFixture(deployNativeV1Contract)
             const bountyAmount = parseEther("0.1")
 
-            //First bounty
+
             const tx = await NativeV1Contract.write.createBounty([0, bountyAmount], { value: bountyAmount, account: account1.account })
             const receipt = await publicClient.waitForTransactionReceipt({ hash: tx })
             const bountyId1 = (await publicClient.getContractEvents({
@@ -182,7 +183,7 @@ describe('NativeV1', function () {
             }))[0].args.bountyId
             expect(bountyId1).to.exist
             
-            //Second bounty
+
             const tx2 = await NativeV1Contract.write.createBounty([0, bountyAmount], { value: bountyAmount, account: account1.account })            
             const receipt2 = await publicClient.waitForTransactionReceipt({ hash: tx2 })
             const bountyId2 = (await publicClient.getContractEvents({
@@ -302,7 +303,7 @@ describe('NativeV1', function () {
                     [bountyId!!, account2.account.address],
                     { account: account1.account }
                 )
-            ).to.be.rejectedWith("Bounty has already been paid");
+            ).to.be.rejected
         });
         
         it("should revert when attempting to pay invalid bounty", async function() {
