@@ -5,8 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract TokenBountyContract is Ownable {
-
+contract Erc20_v2 is Ownable {
     IERC20 public immutable token;
     uint8 public immutable decimals;
     string public symbol;
@@ -44,11 +43,7 @@ contract TokenBountyContract is Ownable {
 
         _bountyCounter++;
         bytes32 bountyId = keccak256(
-            abi.encodePacked(
-                _bountyCounter,
-                msg.sender,
-                block.timestamp
-            )
+            abi.encodePacked(_bountyCounter, msg.sender, block.timestamp)
         );
 
         bounties[bountyId] = Bounty({

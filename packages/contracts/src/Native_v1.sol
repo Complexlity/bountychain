@@ -136,7 +136,7 @@ contract Native_v1 is Ownable {
     ) external onlyOwner {
         if (tokenType == TokenType.ETH) {
             require(
-                address(this).balance > amount,
+                address(this).balance >= amount,
                 "Withdraw amount exceeds contract balance"
             );
             (bool sent, ) = recepient.call{value: amount}("");
