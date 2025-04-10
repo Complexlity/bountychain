@@ -3,7 +3,7 @@ import hre from 'hardhat';
 import { loadFixture } from '@nomicfoundation/hardhat-toolbox-viem/network-helpers';
 import { parseEther } from 'viem';
 
-describe('Native_v1', function () {
+describe('NativeV1', function () {
     async function deployNativeV1Contract() {
         const [deployer, account1, account2] = await hre.viem.getWalletClients()
         const publicClient = await hre.viem.getPublicClient()
@@ -11,7 +11,7 @@ describe('Native_v1', function () {
         //Send usdc to the deployer
         await UsdcContract.write.mint([deployer.account.address, parseEther('1000')])
         await UsdcContract.write.mint([account1.account.address, parseEther('1000')])
-        const NativeV1Contract = await hre.viem.deployContract('Native_v1', [deployer.account.address, UsdcContract.address])
+        const NativeV1Contract = await hre.viem.deployContract('NativeV1Bounty', [deployer.account.address, UsdcContract.address])
         //Check the deployer's usdc balance
         
         return { NativeV1Contract, UsdcContract, deployer, account1, account2, publicClient }

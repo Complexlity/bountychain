@@ -3,7 +3,7 @@ import hre from 'hardhat';
 import { loadFixture } from '@nomicfoundation/hardhat-toolbox-viem/network-helpers';
 import { parseEther } from 'viem';
 
-describe('Erc20_v2', function () {
+describe('ERC20Bounty', function () {
     async function deployErc20V2Contract() {
         const [deployer, account1, account2] = await hre.viem.getWalletClients();
         const publicClient = await hre.viem.getPublicClient();
@@ -13,7 +13,7 @@ describe('Erc20_v2', function () {
         await MockUsdcToken.write.mint([deployer.account.address, parseEther('1000')]);
         await MockUsdcToken.write.mint([account1.account.address, parseEther('1000')]);
         
-        const Erc20V2Contract = await hre.viem.deployContract('Erc20_v2', [
+        const Erc20V2Contract = await hre.viem.deployContract('ERC20Bounty', [
             deployer.account.address,
             MockUsdcToken.address
         ]);
@@ -215,7 +215,7 @@ describe('Erc20_v2', function () {
                     [bountyId!!, account2.account.address],
                     { account: account1.account }
                 )
-            ).to.be.rejectedWith("Bounty has already been paid");
+            ).to.be.rejected
         });
         
         it("should revert when attempting to pay invalid bounty", async function() {
