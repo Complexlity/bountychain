@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract BountyContract is Ownable {
+contract Native_v2 is Ownable {
     uint256 private _bountyCounter;
 
     struct Bounty {
