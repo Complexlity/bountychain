@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -13,14 +13,24 @@ contract NativeV2Bounty is Ownable {
     mapping(bytes32 => Bounty) private bounties;
     uint256 private _bountyCounter;
 
+    error BountyAmountZero();
+    error IncorrectETHSent();
+    error InvalidWinner();
+    error BountyNotFound();
+    error NotCreator();
+    error BountyAlreadyPaid();
+    error TransferFailed();
+    error WithdrawToZeroAddress();
+    error InsufficientBalance();
+
     event BountyCreated(bytes32 bountyId, address creator, uint256 amount);
     event BountyPaid(bytes32 bountyId, address winner, uint256 amount);
 
     constructor(address initialOwner) Ownable(initialOwner) {}
 
     function createBounty(uint256 amount) external payable returns (bytes32) {
-        require(amount > 0, "Bounty amount must be greater than 0");
-        require(msg.value == amount, "ETH value must match bounty amount");
+        if (amount == 0) revert BountyAmountZero();
+        if (msg.value != amount) revert IncorrectETHSent();
 
         _bountyCounter++;
         bytes32 bountyId = keccak256(
@@ -38,17 +48,17 @@ contract NativeV2Bounty is Ownable {
     }
 
     function payBounty(bytes32 bountyId, address winner) external {
-        require(winner != address(0), "Invalid winner address");
+        if (winner == address(0)) revert InvalidWinner();
 
         Bounty storage bounty = bounties[bountyId];
-        require(bounty.creator != address(0), "Bounty does not exist");
-        require(bounty.creator == msg.sender, "Only creator can pay bounty");
-        require(!bounty.isPaid, "Bounty has already been paid");
+        if (bounty.creator == address(0)) revert BountyNotFound();
+        if (bounty.creator != msg.sender) revert NotCreator();
+        if (bounty.isPaid) revert BountyAlreadyPaid();
 
         bounty.isPaid = true;
 
         (bool sent, ) = winner.call{value: bounty.amount}("");
-        require(sent, "Failed to send ETH");
+        if (!sent) revert TransferFailed();
 
         emit BountyPaid(bountyId, winner, bounty.amount);
     }
@@ -61,10 +71,10 @@ contract NativeV2Bounty is Ownable {
     }
 
     function withdraw(uint256 amount, address recipient) external onlyOwner {
-        require(recipient != address(0), "Cannot withdraw to zero address");
-        require(address(this).balance >= amount, "Not enough ETH to withdraw");
+        if (recipient == address(0)) revert WithdrawToZeroAddress();
+        if (address(this).balance < amount) revert InsufficientBalance();
 
         (bool sent, ) = recipient.call{value: amount}("");
-        require(sent, "Failed to send ETH");
+        if (!sent) revert TransferFailed();
     }
 }

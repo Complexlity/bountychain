@@ -19,34 +19,48 @@ contract ERC20Bounty is Ownable {
 
     mapping(bytes32 => Bounty) private bounties;
 
-    event BountyCreated(bytes32 bountyId, address indexed creator, uint256 amount);
+    error InvalidTokenAddress();
+    error InvalidBountyAmount();
+    error TokenTransferFailed();
+    error Unauthorized();
+    error BountyAlreadyPaid();
+    error InvalidBounty();
+    error InsufficientContractBalance();
+
+    event BountyCreated(
+        bytes32 bountyId,
+        address indexed creator,
+        uint256 amount
+    );
     event BountyPaid(bytes32 bountyId, address indexed winner, uint256 amount);
 
-    constructor(address initialOwner, address tokenAddress) Ownable(initialOwner) {
-        require(tokenAddress != address(0), "Invalid token address");
+    constructor(
+        address initialOwner,
+        address tokenAddress
+    ) Ownable(initialOwner) {
+        if (tokenAddress == address(0)) revert InvalidTokenAddress();
         token = IERC20(tokenAddress);
-
         decimals = IERC20Metadata(tokenAddress).decimals();
         symbol = IERC20Metadata(tokenAddress).symbol();
     }
 
     function createBounty(uint256 amount) external returns (bytes32) {
-        require(amount > 0, "Bounty amount must be greater than 0");
+        if (amount == 0) revert InvalidBountyAmount();
 
         bountyCounter++;
         bytes32 bountyId = keccak256(
             abi.encodePacked(bountyCounter, msg.sender, block.timestamp)
         );
+
         bounties[bountyId] = Bounty({
             amount: amount,
             creator: msg.sender,
             isPaid: false
         });
 
-        require(
-            token.transferFrom(msg.sender, address(this), amount),
-            "Token transfer failed"
-        );
+        if (!token.transferFrom(msg.sender, address(this), amount)) {
+            revert TokenTransferFailed();
+        }
 
         emit BountyCreated(bountyId, msg.sender, amount);
         return bountyId;
@@ -55,19 +69,17 @@ contract ERC20Bounty is Ownable {
     function payBounty(bytes32 bountyId, address winner) external {
         Bounty storage bounty = bounties[bountyId];
 
-        require(
-            msg.sender == bounty.creator || msg.sender == owner(),
-            "Only creator or owner can pay the bounty"
-        );
-        require(!bounty.isPaid, "Bounty already paid");
-        require(bounty.amount > 0, "Invalid bounty");
+        if (msg.sender != bounty.creator && msg.sender != owner()) {
+            revert Unauthorized();
+        }
+        if (bounty.isPaid) revert BountyAlreadyPaid();
+        if (bounty.amount == 0) revert InvalidBountyAmount();
 
         bounty.isPaid = true;
 
-        require(
-            token.transfer(winner, bounty.amount),
-            "Token transfer failed"
-        );
+        if (!token.transfer(winner, bounty.amount)) {
+            revert TokenTransferFailed();
+        }
 
         emit BountyPaid(bountyId, winner, bounty.amount);
     }
@@ -80,10 +92,11 @@ contract ERC20Bounty is Ownable {
     }
 
     function withdraw(uint256 amount, address recipient) external onlyOwner {
-        require(
-            token.balanceOf(address(this)) >= amount,
-            "Not enough tokens to withdraw"
-        );
-        require(token.transfer(recipient, amount), "Token transfer failed");
+        if (token.balanceOf(address(this)) < amount) {
+            revert InsufficientContractBalance();
+        }
+        if (!token.transfer(recipient, amount)) {
+            revert TokenTransferFailed();
+        }
     }
 }
