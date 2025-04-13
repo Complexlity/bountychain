@@ -1,5 +1,5 @@
 {
-  "name": "hardhat-project",
+  "name": "bountychain-contracts",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
     "@openzeppelin/contracts": "5.0.0",
@@ -9,6 +9,6 @@
     "compile": "hardhat compile",
     "test": "hardhat test",
     "grep": "bun run test --grep",
-    "hardhat": "hardhat"
+    "hd": "hardhat"
   }
 }
