@@ -1,6 +1,5 @@
 import { vars } from "hardhat/config";
 import { arbitrum, arbitrumSepolia } from "viem/chains";
-import { nativeV1Abi, nativeV2Abi, erc20Abi } from "./abis";
 
 
 
@@ -32,9 +31,3 @@ export const SUPPORTED_NETWORKS = {
       }
     },
 } 
-
-export const ABIS = {
-    nativeV1Abi,
-    nativeV2Abi,
-    erc20Abi
-}
