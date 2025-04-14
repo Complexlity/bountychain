@@ -1,5 +1,5 @@
 {
-  "name": "bountychain-contracts",
+  "name": "@repo/contracts",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
     "@openzeppelin/contracts": "5.0.0",
