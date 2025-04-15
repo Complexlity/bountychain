@@ -60,11 +60,9 @@ npx hardhat vars set ALCHEMY_API_KEY
 
 ## Deploy And Verify
 
-
-```
+```bash
 npx hardhat ignition deploy ignition/modules/<NETWORK_NAME>/<MODULE_NAME>.ts --network <NETWORK_NAME>
 ```
-
 
 ** Supported Networks Names **
 - **arbitrum**
@@ -76,7 +74,7 @@ npx hardhat ignition deploy ignition/modules/<NETWORK_NAME>/<MODULE_NAME>.ts --n
 - **ERC20**
 - **NativeV1**
 - **NativeV2**
-- **UsdcMock**
+- **UsdcMock** (For Localhost Only 🟨)
 
 ** NOTE **
 For Localhost, Run the **UsdcMock** contract first before others.
