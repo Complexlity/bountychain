@@ -37,6 +37,7 @@ contract BountyMigrator is Ownable {
     error BountyAlreadyMigrated();
     error OnlyETHBountiesSupported();
     error InsufficientFunds();
+    error WithdrawToZeroAddress();
 
     event BountyMigrated(
         bytes32 v1BountyId,
@@ -85,15 +86,15 @@ contract BountyMigrator is Ownable {
         bytes32[] calldata v1BountyIds
     ) external payable onlyOwner {
         for (uint i = 0; i < v1BountyIds.length; i++) {
-            try this.migrateBounty{value: 0}(v1BountyIds[i]) {
-            } catch {
-            }
+            try this.migrateBounty{value: 0}(v1BountyIds[i]) {} catch {}
         }
     }
 
-    function withdraw() external onlyOwner {
+    function withdraw(address payable recepient) external onlyOwner {
+        if (recepient == address(0)) revert WithdrawToZeroAddress();
+
         uint256 balance = address(this).balance;
-        (bool success, ) = owner().call{value: balance}("");
+        (bool success, ) = recepient.call{value: balance}("");
         if (!success) revert MigrationFailed();
     }
 
